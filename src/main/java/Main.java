@@ -1,35 +1,42 @@
 import models.File;
-import utils.Iterator.FileCollection;
-import utils.Iterator.Iterator;
-import utils.Iterator.impl.FileCollectionImpl;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        File file1 = new File(1, "document1.txt", 1024, "/user/documents/document1.txt");
-        File file2 = new File(2, "image1.jpg", 2048, "/user/images/image1.jpg");
-        File file3 = new File(3, "presentation.pptx", 4096, "/user/presentations/presentation.pptx");
-        File file4 = new File(4, "video.mp4", 8192, "/user/videos/video.mp4");
-        File file5 = new File(5, "music.mp3", 5120, "/user/music/music.mp3");
+        File file1 = new File.FileBuilder()
+                .setFileName("document1.txt")
+                .setSize(1024L)
+                .setPath("/user/documents/document1.txt")
+                .build();
 
-        List<File> filesList = new ArrayList<>();
+        File file2 = new File.FileBuilder()
+                .setFileName("image1.jpg")
+                .setSize(2048L)
+                .setPath("/user/images/image1.jpg")
+                .build();
 
-        filesList.add(file1);
-        filesList.add(file2);
-        filesList.add(file3);
-        filesList.add(file4);
-        filesList.add(file5);
+        File file3 = new File.FileBuilder()
+                .setFileName("presentation.pptx")
+                .setSize(4096L)
+                .setPath("/user/presentations/presentation.pptx")
+                .build();
 
-        FileCollection fileCollection = new FileCollectionImpl(filesList);
+        File file4 = new File.FileBuilder()
+                .setFileName("video.mp4")
+                .setSize(8192L)
+                .setPath("/user/videos/video.mp4")
+                .build();
 
-        Iterator fileIterator = fileCollection.createIterator();
+        File file5 = new File.FileBuilder()
+                .setFileName("music.mp3")
+                .setSize(5120L)
+                .setPath("/user/music/music.mp3")
+                .build();
 
-        while(fileIterator.hasNext()){
-            System.out.println(fileIterator.next());
-        }
-
+        System.out.println(file1);
+        System.out.println(file2);
+        System.out.println(file3);
+        System.out.println(file4);
+        System.out.println(file5);
     }
 }
