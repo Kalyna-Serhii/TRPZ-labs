@@ -1,6 +1,8 @@
 package models;
 
-public class File {
+import utils.factory.AbstractFile;
+
+public class File implements AbstractFile {
     private int id;
     private String fileName;
     private long size;
@@ -15,6 +17,7 @@ public class File {
     }
 
     public File(FileBuilder builder) {
+        this.id = builder.id;
         this.fileName = builder.fileName;
         this.size = builder.size;
         this.path = builder.path;
@@ -38,15 +41,20 @@ public class File {
     }
 
     @Override
-    public String toString(){
-        return "FileName id: " + id + " size: " + size + " fileName: " + fileName + " path: " + path;
+    public void display() {
+        System.out.println("FileName id: " + id + " size: " + size + " fileName: " + fileName + " path: " + path);
     }
 
     public static class FileBuilder {
+        private int id;
         private String fileName;
         private long size;
         private String path;
 
+        public FileBuilder setId(int id) {
+            this.id = id;
+            return this;
+        }
         public FileBuilder setFileName(String fileName) {
             this.fileName = fileName;
             return this;
