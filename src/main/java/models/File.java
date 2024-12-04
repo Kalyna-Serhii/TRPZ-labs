@@ -14,6 +14,12 @@ public class File {
         this.path = path;
     }
 
+    public File(FileBuilder builder) {
+        this.fileName = builder.fileName;
+        this.size = builder.size;
+        this.path = builder.path;
+    }
+
     // Getters і Setters
     public int getId() {
         return id;
@@ -31,24 +37,31 @@ public class File {
         return path;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
-
-    public void setSize(long size) {
-        this.size = size;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
     @Override
     public String toString(){
         return "FileName id: " + id + " size: " + size + " fileName: " + fileName + " path: " + path;
+    }
+
+    public static class FileBuilder {
+        private String fileName;
+        private long size;
+        private String path;
+
+        public FileBuilder setFileName(String fileName) {
+            this.fileName = fileName;
+            return this;
+        }
+        public FileBuilder setSize(long size) {
+            this.size = size;
+            return this;
+        }
+        public FileBuilder setPath(String path) {
+            this.path = path;
+            return this;
+        }
+
+        public File build() {
+            return new File(this);
+        }
     }
 }
